@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Detección de suelo")]
     public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
+    public float groundCheckRadius = 0f;
     public LayerMask groundLayer;
 
     private Rigidbody2D rb;
