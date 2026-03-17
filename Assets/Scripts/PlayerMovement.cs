@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movimiento")]
@@ -11,56 +11,45 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
-    [Header("Controles (Input System)")]
-    public InputActionReference moveAction; // Reference to the Move action (Vector2)
-    public InputActionReference jumpAction; // Reference to the Jump action (Button)
-
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private Animator anim; 
+
     private bool isGrounded;
-    private float horizontalInput;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>(); 
     }
-    void OnEnable()
+
+    void Update()
     {
-        // Subscribe to the jump action event when the script is enabled
-        jumpAction.action.performed += ContextToJump;
-    }
-    void OnDisable()
-    {
-        // Unsubscribe to prevent memory leaks when the script is disabled/destroyed
-        jumpAction.action.performed -= ContextToJump;
-    }
-    private void ContextToJump(InputAction.CallbackContext context)
-    {
-        // Saltar
-        if (isGrounded)
+        // 1. Comprueba si tocamos el suelo
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // 2. SALTO: "Jump" en Unity es la barra espaciadora por defecto
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-    }
-    void Update()
-    {
-        // Comprobar si está en el suelo
-        isGrounded = Physics2D.OverlapCircle(
-            groundCheck.position, 
-            groundCheckRadius, 
-            groundLayer);
 
-        // Leer el valor de movimiento
-        // We assume "Move" is a Vector2 (like a thumbstick or WASD). We extract the X axis.
-        horizontalInput = moveAction.action.ReadValue<Vector2>().x;
+        // 3. MOVIMIENTO: "Horizontal" lee automáticamente la A (-1) y la D (1)
+        float h = Input.GetAxisRaw("Horizontal");
+        
+        // Volteamos el sprite según la dirección
+        if (h > 0) sr.flipX = false;
+        else if (h < 0) sr.flipX = true;
 
-        // Voltear sprite según dirección
-        if (horizontalInput > 0) sr.flipX = false;
-        else if (horizontalInput < 0) sr.flipX = true;
+        // Le pasamos la velocidad al Animator para que cambie de Idle a Run
+        anim.SetFloat("Speed", Mathf.Abs(h));
     }
+
     void FixedUpdate()
     {
-        // Movimiento horizontal
-        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        // Aplicamos la fuerza física real basada en si pulsaste A o D
+        float h = Input.GetAxisRaw("Horizontal");
+        rb.linearVelocity = new Vector2(h * moveSpeed, rb.linearVelocity.y);
     }
 }
