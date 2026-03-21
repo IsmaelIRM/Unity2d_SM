@@ -13,8 +13,18 @@
 * Se crea el jugador inicialmente como un cuadrado. Se cambia el sprite de este a uno importado. Además se le añaden animaciones (idle, run, disparo, etc...) con la herramiento de animación
 * Se le añade un script de movimiento. Este debe controlar si el jugador está tocando el suelo, para ello se crea un objeto vacío hijo del jugador que estará comprobando si eljugador toca el suelo.
   * El objeto vacío (*GroundCheck*) tiene su componente y en -0.1, para que quede justo debajo de los pies del jugador, con posición por defecto en y=0
+* Se crean las animaciones para eljugador (idle, saltar, correr, disparar quieto y saltando)
+* Para manejar los disparos se crea el script playerShooting
+  * Para que pueda disparar se crea un objeto vacio firePoint, desde este punto saldrán las balas
+
+## Balas jugador y enemigo
+* Se crean como un objeto vacío al que se le agrega su animación y los scripts para que funcionen
+* EL rigidbody de la bala debe tener la gravedad a 0 para que no caiga
 
 ## Cámara
 
 * En vez de crear un script para la cámara, se descarga el paquete de *Cinemachine*.
 * Se crea un objeto Cinemachine camera 2D. A este se le define *Trcking* *Target* al objeto del jugador, de este modo la cámara lo seguirá.
+
+## Juego
+* Para llevar contabilidad de condiciones de victoria, derrota, muerte... se crea un objeto vacio GameManager que gestione todos estos contadores y condiciones.

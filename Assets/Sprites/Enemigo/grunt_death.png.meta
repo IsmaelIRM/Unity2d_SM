@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 630d648991c9d7a4e8d95d303272e80d
+guid: 023e9854c8a66f445b599e550cd7e10d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: john_run_shoot_0
+      name: grunt_death_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 4
         y: 0
-        width: 19
-        height: 19
+        width: 17
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,17 +125,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4988d757c8d27b54ca41429c08df4df9
-      internalID: 278248052
+      spriteID: d62e42bd959f91146b9d2f04b9117196
+      internalID: 37944821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: john_run_shoot_1
+      name: grunt_death_1
       rect:
         serializedVersion: 2
-        x: 31
+        x: 29
         y: 0
         width: 19
         height: 18
@@ -147,41 +147,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d01d3ef1940ed34cbf783d9b28de025
-      internalID: -1710591080
+      spriteID: cad4836c0a2c0724ca076a9e8367e4b9
+      internalID: 253384696
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: john_run_shoot_2
+      name: grunt_death_2
       rect:
         serializedVersion: 2
-        x: 56
+        x: 54
+        y: 0
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2024b56a8a8c71142bac667ab0980699
+      internalID: 91703635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_death_3
+      rect:
+        serializedVersion: 2
+        x: 80
         y: 0
         width: 21
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ea153f941fda004daacfa52d8300cdb
-      internalID: -1515061632
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: john_run_shoot_3
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 0
-        width: 19
         height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -191,42 +191,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb56ee1bdb2e1814380fd267baa33274
-      internalID: 758967578
+      spriteID: 3e4ed94c4c5de204fbbb02258a7a392b
+      internalID: -712111792
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: john_run_shoot_4
+      name: grunt_death_4
       rect:
         serializedVersion: 2
-        x: 110
-        y: 1
-        width: 18
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0bec10c89964db24ca21bfa612fc475d
-      internalID: 1991222404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: john_run_shoot_5
-      rect:
-        serializedVersion: 2
-        x: 136
+        x: 107
         y: 0
-        width: 19
-        height: 19
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 270316614f052064691fe2766cfe89f5
-      internalID: -326430154
+      spriteID: cbfde1c1110a75e479abf88d7f6fd905
+      internalID: 1512969953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: john_run_shoot_6
+      name: grunt_death_5
       rect:
         serializedVersion: 2
-        x: 161
+        x: 155
         y: 0
-        width: 20
-        height: 18
+        width: 24
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -257,20 +235,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 056d07638dd48b643b03b909be02f1b6
-      internalID: -1879888460
+      spriteID: 3eec297bb82791a4ca6833cb8ffd8b68
+      internalID: -1739333624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: john_run_shoot_7
+      name: grunt_death_6
       rect:
         serializedVersion: 2
-        x: 187
+        x: 185
         y: 0
-        width: 19
-        height: 18
+        width: 22
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -279,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5820490905dd003478c422f6b8d1cf7b
-      internalID: 1244868761
+      spriteID: 0dcc275d2eadc3d46a2f38d09674b6ba
+      internalID: -87703019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: john_run_shoot_8
+      name: grunt_death_8
       rect:
         serializedVersion: 2
-        x: 212
+        x: 211
         y: 0
-        width: 20
-        height: 19
+        width: 21
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -301,20 +279,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a7539fa8ca68ad40882c83697d39553
-      internalID: -1424435116
+      spriteID: b667c8676b5ba074ca22b003c0b9a9ea
+      internalID: -183921895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: john_run_shoot_9
+      name: grunt_death_10
       rect:
         serializedVersion: 2
         x: 239
-        y: 1
-        width: 20
-        height: 18
+        y: 0
+        width: 18
+        height: 22
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -323,8 +301,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22bbcaa881ed2c94c99613a0d645c573
-      internalID: 631627267
+      spriteID: 54a7a96a0e7ab174cb79b5d24636215f
+      internalID: -719887879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_death_11
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 0
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 553f7d34c8e8b224292fd1bce75a40c8
+      internalID: 1083953745
       vertices: []
       indices: 
       edges: []
@@ -343,18 +343,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":25.0,"y":22.0},"gridSpriteOffset":{"x":2.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      john_run_shoot_0: 278248052
-      john_run_shoot_1: -1710591080
-      john_run_shoot_2: -1515061632
-      john_run_shoot_3: 758967578
-      john_run_shoot_4: 1991222404
-      john_run_shoot_5: -326430154
-      john_run_shoot_6: -1879888460
-      john_run_shoot_7: 1244868761
-      john_run_shoot_8: -1424435116
-      john_run_shoot_9: 631627267
+      grunt_death_0: 37944821
+      grunt_death_1: 253384696
+      grunt_death_10: -719887879
+      grunt_death_11: 1083953745
+      grunt_death_2: 91703635
+      grunt_death_3: -712111792
+      grunt_death_4: 1512969953
+      grunt_death_5: -1739333624
+      grunt_death_6: -87703019
+      grunt_death_7: 1275806338
+      grunt_death_8: -183921895
+      grunt_death_9: 221411730
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
