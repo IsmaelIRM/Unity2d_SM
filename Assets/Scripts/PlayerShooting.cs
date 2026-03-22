@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Configuración de Disparo")]
-    public Transform firePoint; // De dónde sale la bala (la punta del arma)
+    public Vector2 spawnOffset = new Vector2(0.16f, -0.035f);   
     public GameObject bulletPrefab; // La plantilla de la bala
+    [Header("Controles (Input System)")]
+    public InputActionReference attackAction; // Reference to the Attack action (Button)
+
 
     private Animator anim;
     private SpriteRenderer sr;
@@ -14,28 +18,33 @@ public class PlayerShooting : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
     }
-
-    void Update()
+    private void OnEnable()
     {
-        // "Fire1" es el clic izquierdo del ratón o el Ctrl izquierdo por defecto
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Shoot();
-        }
+        attackAction.action.performed += ContextToShoot;
     }
 
-    void Shoot()
+    void ContextToShoot(InputAction.CallbackContext context)
     {
-        // 1. Avisamos al Animator
-        anim.SetTrigger("Shoot");
+        float directionX = transform.localScale.x < 0 ? -1f : 1f;
 
-        // 2. Creamos la bala en la posición del firePoint
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Vector2 actualSpawnPos = (Vector2)transform.position + new Vector2(spawnOffset.x * directionX, spawnOffset.y);
+        
+        GameObject bullet = Instantiate(original: bulletPrefab, position: actualSpawnPos, rotation: Quaternion.identity);
 
-        // 3. ¿Hacia dónde miramos? Si el sprite está volteado, giramos la bala 180 grados
-        if (sr.flipX)
+        if (directionX == -1f)
         {
             bullet.transform.eulerAngles = new Vector3(0, 180, 0);
         }
+    }
+
+    // Como ya no hay un objeto físico para ver dónde está el detector,
+    // usamos los Gizmos para dibujar un círculo rojo en el editor y poder ajustarlo visualmente.
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        // Dibujamos el punto derecho
+        Gizmos.DrawWireSphere((Vector2)transform.position + spawnOffset, 0.1f);
+        // Dibujamos el punto izquierdo
+        Gizmos.DrawWireSphere((Vector2)transform.position + new Vector2(-spawnOffset.x, spawnOffset.y), 0.1f);
     }
 }

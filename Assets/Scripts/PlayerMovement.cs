@@ -1,55 +1,62 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movimiento")]
     public float moveSpeed = 7f;
-    public float jumpForce = 14f;
+    public float jumpForce = 7f;
 
-    [Header("Detección de suelo")]
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.01f;
-    public LayerMask groundLayer;
+    [Header("Controles (Input System)")]
+    public InputActionReference moveAction; // Reference to the Move action (Vector2)
+    public InputActionReference jumpAction; // Reference to the Jump action (Button)
 
+    private GroundDetector groundDetector;
     private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private Animator anim; 
 
-    private bool isGrounded;
+    private float horizontalInput;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>(); 
+        groundDetector = GetComponent<GroundDetector>();
+
+    }
+    void OnEnable()
+    {
+        // Subscribe to the jump action event when the script is enabled
+        jumpAction.action.performed += ContextToJump;
+
+        // Para el movimiento, necesitamos saber cuándo empieza/cambia (performed) y cuándo se suelta (canceled)
+        moveAction.action.performed += ContextToMove;
+        moveAction.action.canceled += ContextToMove;
     }
 
-    void Update()
+    void OnDisable()
     {
-        // 1. Comprueba si tocamos el suelo
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        // Unsubscribe to prevent memory leaks when the script is disabled/destroyed
+        jumpAction.action.performed -= ContextToJump; 
+        moveAction.action.performed -= ContextToMove;
+        moveAction.action.canceled -= ContextToMove;
+    }
 
-        // 2. SALTO: "Jump" en Unity es la barra espaciadora por defecto
-        if (Input.GetButtonDown("Jump") && isGrounded)
+    private void ContextToJump(InputAction.CallbackContext context)
+    {
+        // Saltar
+        if (groundDetector.IsGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
-
-        // 3. MOVIMIENTO: "Horizontal" lee automáticamente la A (-1) y la D (1)
-        float h = Input.GetAxisRaw("Horizontal");
-        
-        // Volteamos el sprite según la dirección
-        if (h > 0) sr.flipX = false;
-        else if (h < 0) sr.flipX = true;
-
-        // Le pasamos la velocidad al Animator para que cambie de Idle a Run
-        anim.SetFloat("Speed", Mathf.Abs(h));
+    }
+    private void ContextToMove(InputAction.CallbackContext context)
+    {
+        // Cada vez que el jugador mueve el stick/teclas, o las suelta, actualizamos la variable
+        horizontalInput = context.ReadValue<Vector2>().x;
     }
 
     void FixedUpdate()
     {
         // Aplicamos la fuerza física real basada en si pulsaste A o D
-        float h = Input.GetAxisRaw("Horizontal");
-        rb.linearVelocity = new Vector2(h * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocityX = horizontalInput * moveSpeed;
     }
 }
