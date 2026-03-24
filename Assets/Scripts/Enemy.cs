@@ -20,9 +20,9 @@ public class Enemy : MonoBehaviour
         // 2. Activamos la animación de muerte
         if (anim != null) anim.SetTrigger("Muerte");
 
-        // 3. Sumamos 1 al contador global
-        GameManager.enemigosEliminados++;
-        Debug.Log("¡Enemigo abatido! Total: " + GameManager.enemigosEliminados);
+        // // 3. Sumamos 1 al contador global
+        // GameManager.enemigosEliminados++;
+        // Debug.Log("¡Enemigo abatido! Total: " + GameManager.enemigosEliminados);
 
         // 4. Destruimos el objeto después de 1 segundo (ajusta este tiempo a lo que dure tu animación de muerte)
         Destroy(gameObject, 1f); 
