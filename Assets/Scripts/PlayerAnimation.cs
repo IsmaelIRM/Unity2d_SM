@@ -9,7 +9,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Start()
     {
-        // Obtenemos las referencias a los componentes que están en el mismo GameObject (el Player)
+        // Obtenemos las referencias a los componentes que estï¿½n en el mismo GameObject (el Player)
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
@@ -19,18 +19,10 @@ public class PlayerAnimation : MonoBehaviour
     void Update()
     {
         Flip();
-        // 1. Animación de Correr (Velocidad Horizontal)
-        // Usamos Mathf.Abs para convertir números negativos (ir a la izquierda) en positivos.
-        // Al Animator solo le importa "cuánto" te mueves, no hacia dónde.
+        // 1. Animaciï¿½n de Correr (Velocidad Horizontal)
+        // Usamos Mathf.Abs para convertir nï¿½meros negativos (ir a la izquierda) en positivos.
+        // Al Animator solo le importa "cuï¿½nto" te mueves, no hacia dï¿½nde.
         anim.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
-
-        // 2. Animación de Saltar / Caer (Velocidad Vertical)
-        // Si es mayor que 0, está subiendo. Si es menor, está cayendo.
-        anim.SetFloat("VerticalVelocity", rb.linearVelocity.y);
-
-        // 3. Animación de tocar el suelo
-        // Le pasamos el valor exacto que calcula tu script de movimiento
-        anim.SetBool("IsGrounded", groundDetector.IsGrounded);
     }
 
     void Flip()
