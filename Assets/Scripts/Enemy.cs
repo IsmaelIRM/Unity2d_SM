@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private Collider2D coll;
 
+    public int contactDamage = 1;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -26,5 +28,12 @@ public class Enemy : MonoBehaviour
 
         // 4. Destruimos el objeto después de 1 segundo (ajusta este tiempo a lo que dure tu animación de muerte)
         Destroy(gameObject, 1f); 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerHealth>()?.RecibirDano(contactDamage);
+        }
     }
 }

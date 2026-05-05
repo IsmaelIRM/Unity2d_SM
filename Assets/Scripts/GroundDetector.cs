@@ -3,29 +3,43 @@ using UnityEngine;
 public class GroundDetector : MonoBehaviour
 {
     [Header("Configuración del Sensor")]
-    [Tooltip("Distancia desde el centro del personaje hasta sus pies")]
     public Vector2 offset = new Vector2(0f, -0.2f);
     public float groundCheckRadius = 0.04f;
     public LayerMask groundLayer;
 
-    // Propiedad pública de solo lectura
     public bool IsGrounded;
 
     void Update()
     {
-        // Calculamos la posición matemáticamente: Posición actual + nuestro desplazamiento
-        Vector2 checkPosition = (Vector2)transform.position + offset;
+        // CORRECCIÓN: Multiplicamos el offset.x por la escala actual en X
+        // Si el personaje se gira (scaleX = -1), el punto de detección también se gira
+        float direccion = transform.localScale.x;
+        Vector2 offsetCorregido = new Vector2(offset.x * direccion, offset.y);
+        
+        Vector2 checkPosition = (Vector2)transform.position + offsetCorregido;
 
-        // Hacemos el círculo en esa posición calculada
         IsGrounded = Physics2D.OverlapCircle(checkPosition, groundCheckRadius, groundLayer);
     }
 
-    // Como ya no hay un objeto físico para ver dónde está el detector,
-    // usamos los Gizmos para dibujar un círculo rojo en el editor y poder ajustarlo visualmente.
-    private void OnDrawGizmosSelected()
+    public bool CheckGrounded()
     {
-        Vector2 checkPosition = (Vector2)transform.position + offset;
-        Gizmos.color = Color.red;
+        // Calculamos la posición con la escala ACTUAL (justo después del Flip)
+        float direccion = transform.localScale.x;
+        Vector2 checkPosition = (Vector2)transform.position + new Vector2(offset.x * direccion, offset.y);
+
+        // Devolvemos el resultado real en este preciso instante
+        return Physics2D.OverlapCircle(checkPosition, groundCheckRadius, groundLayer);
+    }
+
+    private void OnDrawGizmos() // Cambiado a OnDrawGizmos para verlo siempre
+    {
+        // Reflejamos la misma lógica en el Gizmo para que lo veas moverse en el Editor
+        float direccion = transform.localScale.x;
+        Vector2 offsetCorregido = new Vector2(offset.x * direccion, offset.y);
+        
+        Vector2 checkPosition = (Vector2)transform.position + offsetCorregido;
+        
+        Gizmos.color = IsGrounded ? Color.green : Color.red; // Cambia a verde si detecta suelo
         Gizmos.DrawWireSphere(checkPosition, groundCheckRadius);
     }
 }

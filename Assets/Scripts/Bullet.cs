@@ -16,10 +16,16 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
+        Debug.Log("La bala ha chocado contra: " + hitInfo.gameObject.name + " (Tag: " + hitInfo.gameObject.tag + ")");
         // 1. Si chocamos contra nuestro propio Jugador, ignoramos el choque y salimos
         if (hitInfo.CompareTag("Player"))
         {
             return; 
+        }
+
+        if (hitInfo.isTrigger)
+        { 
+            return;
         }
 
         // 2. Buscamos si hemos chocado contra un Enemigo

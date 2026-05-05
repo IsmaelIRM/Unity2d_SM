@@ -4,9 +4,12 @@ using System; // Necesario para usar Action (Eventos)
 public class GameManager : MonoBehaviour
 {
     // EL TRUCO SINGLETON: Esto crea una instancia única accesible desde cualquier otro script
-    public static GameManager Instance;
+    public static GameManager Instance { get; private set; }
 
     public event Action OnCoinCollected;
+
+    public Action<int> OnGameStart;
+    public Action<int> OnHealthChanged;
 
     private int coinCount = 0;       // El conteo interno de monedas
 
@@ -16,6 +19,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -31,4 +35,5 @@ public class GameManager : MonoBehaviour
         // Disparamos el evento. El interrogante significa "¿Hay alguien escuchando? Si es así, avísale".
         OnCoinCollected?.Invoke();
     }
+
 }
